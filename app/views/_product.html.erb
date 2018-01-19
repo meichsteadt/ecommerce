@@ -1,0 +1,8 @@
+<div class="col-md-4 product">
+<%= link_to product_path(product) do %>
+    <img src="<%= product.image %>" alt="<%= product.name %>" class="img-fluid">
+    <div class="info">
+      <p><%= product.name %></p>
+    </div>
+<% end %>
+</div>

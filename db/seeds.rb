@@ -1,0 +1,21 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create(name: 'Luke', movie: movies.first)
+
+["dining", "living-room", "bedroom", "occasional", "youth"].each do |name|
+  Category.create(name: "#{name}", image: Faker::LoremPixel.image("750x500"))
+end
+
+Product.create(number:"4950",name:"Roland Collection ",description:"With a modern design that includes clean lines and a dark brown bi-cast vinyl or modern grey fabric, the Roland Collection will be a functional addition to your home. Nestled below the twin bed is the easily accessed lower trundle unit. Casters make quick work of extending this extra sleep space.", category_id: Category.find_by_name("youth").id, image:"https://s3-us-west-1.amazonaws.com/homelegance/Images_MidRes_For+Customer+Advertisement/4950+Shoot+1.jpg", price: 379, dimensions:"80.75 x 40.5 x 39.5H \nTrundle:  75.75 x 40.5 x 12.25H")
+
+Product.create({})
+
+product_items = [{"id":13303,"product_id":3549,"number":"2147KW-1EK","price":409,"description":"Eastern King Sleigh Bed","dimensions":"HB: 47.25H FB: 26.5H","created_at":"2017-10-11T06:03:53.382Z","updated_at":"2017-10-11T06:04:33.193Z","product_number":"2147W-1"},{"id":13302,"product_id":3549,"number":"2147KW-1CK","price":409,"description":"California King Sleigh Bed","dimensions":"HB: 47.25H FB: 26.5H","created_at":"2017-10-11T06:03:53.375Z","updated_at":"2017-10-11T06:04:33.174Z","product_number":"2147W-1"},{"id":13308,"product_id":3549,"number":"2147W-5","price":309,"description":"Dresser","dimensions":"58.25 x 15.75 x 33H","created_at":"2017-10-11T06:03:53.421Z","updated_at":"2017-10-11T06:04:33.273Z","product_number":"2147W-1"},{"id":13305,"product_id":3549,"number":"2147FW-1","price":289,"description":"Full Sleigh Bed","dimensions":"HB: 47.25H FB: 26.5H","created_at":"2017-10-11T06:03:53.398Z","updated_at":"2017-10-11T06:04:33.230Z","product_number":"2147W-1"},{"id":13304,"product_id":3549,"number":"2147W-1","price":289,"description":"Queen Sleigh Bed","dimensions":"HB: 47.25H FB: 26.5H","created_at":"2017-10-11T06:03:53.389Z","updated_at":"2017-10-11T06:04:33.213Z","product_number":"2147W-1"},{"id":13310,"product_id":3549,"number":"2147W-9","price":279,"description":"Chest","dimensions":"31.25 x 15.75 x 48.25H","created_at":"2017-10-11T06:03:53.434Z","updated_at":"2017-10-11T06:04:33.295Z","product_number":"2147W-1"},{"id":13311,"product_id":3549,"number":"2147W-12","price":269,"description":" Lingerie Chest, Hidden Drawer ","dimensions":"21.5 x 15.75 x 56H","created_at":"2017-10-11T06:03:53.442Z","updated_at":"2017-10-11T06:04:33.312Z","product_number":"2147W-1"},{"id":13306,"product_id":3549,"number":"2147TW-1","price":269,"description":"Twin Sleigh Bed","dimensions":"HB: 47.25H FB: 26.5H","created_at":"2017-10-11T06:03:53.408Z","updated_at":"2017-10-11T06:04:33.245Z","product_number":"2147W-1"},{"id":13307,"product_id":3549,"number":"2147W-4","price":129,"description":"Night Stand","dimensions":"21.5 x 15.75 x 23.75H","created_at":"2017-10-11T06:03:53.414Z","updated_at":"2017-10-11T06:04:33.264Z","product_number":"2147W-1"},{"id":13309,"product_id":3549,"number":"2147W-6","price":79,"description":"Mirror","dimensions":"38.25 x 0.75 x 38.25H","created_at":"2017-10-11T06:03:53.428Z","updated_at":"2017-10-11T06:04:33.285Z","product_number":"2147W-1"}]
+
+product_items.each do |prod|
+  Product.create({"number":prod[:number],"name":"Mayville Collection #{prod[:description]}","description":"Traditional in design and modest in scale, the elegant Mayville Collection takes its design inspiration from the classic Louis Philippe styling. Featuring four distinct finishes – burnished brown cherry, white, black, and the newly offered stained grey – with all of the traditional flare unique to the style – antiqued metal bale hardware and distinct framing – this collection is a perfect addition to your traditional adult or youth bedroom.","category_id":Category.find_by_name("bedroom").id,"image":"https://s3-us-west-1.amazonaws.com/homelegance/Images_MidRes_For+Customer+Advertisement/2147W.jpg", price: prod[:price], dimensions: prod[:dimensions]})
+end

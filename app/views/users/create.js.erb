@@ -1,0 +1,21 @@
+$("#arrow1").removeClass("active");
+$("#arrow2").addClass("active");
+$("#shipping").show();
+$("#sign-in").hide();
+$("#signed-in").empty();
+$("#signed-in").append(
+  '<li class="nav-item signed-in">' +
+  '<%= link_to "Account", user_path(current_user), class: "nav-link" %>' +
+  '</li>' +
+  '<li class="nav-item signed-in">' +
+    '<%= link_to "Sign Out", user_path(current_user), method: :delete, class: "nav-link" %>' +
+  '</li>' +
+  '<li class="nav-item">' +
+    '<a class="nav-link" href="/cart">' +
+      '<i class="fa fa-shopping-cart fa-lg"></i>' +
+      '<% if current_order.order_items.any? %>' +
+        '<%= current_order.total_items %>' +
+      '<% end %>' +
+    '</a>' +
+  '</li>'
+);

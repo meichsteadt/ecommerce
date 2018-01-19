@@ -1,0 +1,6 @@
+<div class="row">
+  <% @products.each do |products| %>
+    <%= render "/product", product: products %>
+  <% end %>
+</div>
+<%= render "/pagination", model: @products %>

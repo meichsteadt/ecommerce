@@ -1,0 +1,17 @@
+<%= form_for(user) do |f| %>
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign Up", class: "btn btn-info", style: "float: right;" %>
+  </div>
+
+<p>Already have an account? <a href="/users/sign_in">Log in</a></p>
+<% end %>

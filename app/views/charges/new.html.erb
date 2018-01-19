@@ -1,0 +1,49 @@
+<div class="row">
+  <%= flash[:notice] %>
+  <%= flash[:error] %>
+  <%= render 'progress' %>
+  <div class="col-md-7 order-md-1 order-sm-2">
+    <% if !@user.id %>
+      <div id="sign-in">
+        <%= render 'form', user: @user%>
+      </div>
+    <% else %>
+    <script type="text/javascript">
+      $(function() {
+        $('#shipping').show();
+        $('#arrow1').removeClass('active');
+        $('#arrow2').addClass('active');
+      })
+    </script>
+    <% end %>
+    <div id="shipping">
+      <%= render 'shipping', user: @user %>
+    </div>
+    <div id="pay">
+      <%= form_tag charges_path do %>
+        <%= hidden_field_tag :total, @total %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <label class="amount">
+            <span>Amount: <%= number_to_currency @total %></span>
+          </label>
+        </article>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="<%= @order.total_items %> items"
+                data-amount="<%= @total * 100 %>"
+                data-locale="auto"></script>
+
+        <%= submit_tag "Continue to Secure Checkout", class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-3 order-md-2 order-sm-1">
+    <%= render 'charges_cart', order: @order, total: @total %>
+  </div>
+</div>

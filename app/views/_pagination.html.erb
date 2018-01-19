@@ -1,0 +1,21 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <% unless model.page(model.current_page).first_page? %>
+      <li class="page-item"><a class="page-link" href="?page_number=<%= model.prev_page %>">Previous</a></li>
+    <% else %>
+      <li class="page-item disabled"><a class="page-link" href="?page_number=<%= model.prev_page %>">Previous</a></li>
+    <% end %>
+    <% model.total_pages.times do |time| %>
+      <% if time + 1 == model.current_page %>
+        <li class="page-item active"><a class="page-link"><%= time + 1 %></a></li>
+      <% else %>
+        <li class="page-item"><a class="page-link" href="?page_number=<%= time + 1 %>"><%= time + 1 %></a></li>
+      <% end %>
+    <% end %>
+    <% unless model.page(model.current_page).last_page? %>
+      <li class="page-item"><a class="page-link" href="?page_number=<%= model.next_page %>">Next</a></li>
+      <% else %>
+      <li class="page-item disabled"><a class="page-link" href="?page_number=<%= model.next_page %>">Next</a></li>
+    <% end %>
+  </ul>
+</nav>

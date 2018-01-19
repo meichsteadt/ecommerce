@@ -1,0 +1,36 @@
+<h1>Shopping Cart</h1>
+<% if @order_items.any? %>
+  <% @order_items.sort.each do |item| %>
+  <%= form_for(item) do |f| %>
+  <div class="row">
+    <div class="col-12 shopping-cart-item my-3">
+      <div class="row">
+        <div class="col-sm-2">
+          <img src="<%= item.product.image %>" alt="" class="img-fluid">
+        </div>
+        <div class="col-sm-5">
+          <h3><%= link_to item.product.name, product_path(item.product) %></h3>
+          <p><%= item.product.description %></p>
+          <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete"} %>
+        </div>
+        <div class="col-sm-3">
+          <p> Unit Price: <%= number_to_currency item.product.price %></p>
+        </div>
+        <div class="col-sm-2">
+          <p>Quantity</p>
+          <%= f.select :quantity, options_for_select([[1,1],[2,2],[3,3],[4,4],[5,5],[6,6]], :selected => item.quantity), {}, {:onchange => "this.form.submit()"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+<div class="text-right">
+  <p>Subtotal: (<%= @total_items %> items): <%= number_to_currency current_order.calculate_total %></p>
+  <%= link_to new_charge_path do %>
+    <button class="btn btn-info">Proceed to Checkout</button>
+  <% end %>
+</div>
+<% else %>
+<p>Your shopping cart is empty.</p>
+<% end %>

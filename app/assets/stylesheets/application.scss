@@ -1,0 +1,159 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Open Sans'
+}
+
+nav {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  form.form-inline {
+    input.form-control {
+      width: 40vw;
+      @media screen and (max-width: 1200px) {
+        & {
+          width: 25vw;
+        }
+      }
+    }
+    @media screen and (max-width: 992px) {
+      & {
+        display: none;
+      }
+    }
+  }
+}
+
+.fa-shopping-cart {
+  color: #333;
+  transition: color .05s;
+  &:hover {
+    color: lighten(#333, 50%);
+  }
+}
+
+.shopping-cart-item {
+  img {
+    height: 150px;
+  }
+}
+
+#ads {
+}
+
+.stripe-button-el {
+  display: none !important;
+}
+
+.progress-arrows {
+  text-align: center;
+  height: 80px;
+  margin: 20px auto;
+  display: block;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.arrow {
+  width: 200px;
+  height: 80px;
+  display: table;
+  background-color: #ddd;
+  padding: 15px;
+  text-align: center;
+  margin-left: 8px;
+  position: relative;
+  border-radius: 2px;
+  float: left;
+  h4 {
+    display: table-cell;
+    margin-bottom: 0;
+    padding-left: 16px;
+  }
+  &::after, &::before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 0 40px 30px;
+    border-color: transparent transparent transparent #faf9f7;
+    -moz-border-right-colors: transparent;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 99%;
+    z-index: 2;
+    border-left-color: #fff;
+    margin-left: 8px;
+    z-index: 1;
+    @media screen and (max-width: 991px) {
+      border-width: 25px 0 25px 20px;
+    }
+  }
+  &::before {
+    border-color: transparent transparent transparent #ddd;
+    margin-left: 2px;
+    z-index: 2;
+    @media screen and (max-width: 991px) {
+      & {
+        margin-left: 1px;
+      }
+    }
+  }
+  &.active {
+    background-color: #17a2b8;
+    color: #fff;
+    &::before {
+      border-left-color: #17a2b8;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    & {
+      width: 135px;
+      height: 50px;
+      h4 {
+        font-size: 17px;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+#shipping, #pay {
+  display: none;
+}
+
+#mobile-search {
+  display: none;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  input.form-control {
+    width: 70%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  @media screen and (max-width: 992px) {
+    & {
+      display: block;
+    }
+  }
+}

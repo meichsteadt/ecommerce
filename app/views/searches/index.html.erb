@@ -1,0 +1,9 @@
+<div class="row">
+  <% if @products.any? %>
+    <% @products.each do |product| %>
+      <%= render "/product", product: product %>
+    <% end %>
+  <% else %>
+    <h2>Sorry, no products matches that search</h2>
+  <% end %>
+</div>

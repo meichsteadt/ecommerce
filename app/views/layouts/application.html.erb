@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= display_meta_tags site: 'Ecommerce Test' %>
+    <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="/">E-Commerce Test</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Furniture
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/categories/dining">Dining</a>
+              <a class="dropdown-item" href="/categories/living-room">Living Room</a>
+              <a class="dropdown-item" href="/categories/bedroom">Bedroom</a>
+              <a class="dropdown-item" href="/categories/occasional">Occassional</a>
+              <a class="dropdown-item" href="/categories/youth">Youth</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+        </ul>
+        <%= form_tag('/searches', class: "form-inline my-2 my-lg-0 ml-auto mr-auto") do %>
+          <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <%= submit_tag "Search", class: "btn btn-outline-info my-2 my-sm-0" %>
+        <% end %>
+        <ul class="navbar-nav" id="signed-in">
+          <% if current_user %>
+              <li class="nav-item signed-in">
+                <%= link_to "Account", user_path(current_user), class: "nav-link" %>
+              </li>
+              <li class="nav-item signed-in">
+                <%= link_to "Sign Out", user_path(current_user), method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+            <li class="nav-item signed-out">
+              <a class="nav-link" href="/users/sign_in">Sign In</a>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <a class="nav-link" href="/cart">
+              <i class="fa fa-shopping-cart fa-lg"></i>
+              <% if current_order.order_items.any? %>
+                <%= current_order.total_items %>
+              <% end %>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <%= flash[:notice] %>
+      <%= form_tag('/searches', class: "form-inline my-2 ml-auto mr-auto", id: "mobile-search") do %>
+      <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <%= submit_tag "Search", class: "btn btn-outline-info my-2 my-sm-0" %>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
